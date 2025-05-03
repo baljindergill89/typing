@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Typing Coach AI - Speech to Text</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+<style>
+	* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+       
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 1.5rem;
+        }
+
+        /* Header */
+          /* Header */
+        header {
+            background: #1e3a8a;
+            color: #fff;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);<strong></strong>
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        header nav {
+            display: flex;
+            align-items: center;
+        }
+
+        header nav a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        header nav a:hover {
+            color: #f472b6;
+        }
+
+        header .theme-toggle {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        header .theme-toggle:hover {
+            transform: rotate(180deg);
+        }
+
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
+
+  .recording::before {
+      content: '';
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      background: red;
+      border-radius: 50%;
+      margin-right: 8px;
+      animation: pulse 1s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.5); opacity: 0.7; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 0;
+      background: #2563eb;
+      color: white;
+      padding: 8px;
+      z-index: 100;
+    }
+    .skip-link:focus {
+      top: 0;
+    }
+    .no-browser-support {
+      display: none;
+    }
+    .card {
+      transition: transform 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    .note-actions button {
+      transition: background-color 0.2s;
+    }
+    .note-actions button:hover {
+      opacity: 0.9;
+    }
+	/* Footer */
+        footer {
+            background: #1e3a8a;
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+        }
+
+	</style>	
+</head>
+  <body>
+<noscript>
+<div style="text-align: center; padding: 1rem; background: #f472b6; color: #fff;"> JavaScript is disabled. Please enable it to use all features of Typing Coach AI. </div>
+</noscript>
+<a href="#main" class="skip-link">Skip to Content</a>
+<header>
+  <div class="logo"> Typing Coach AI</div>
+  <nav id="nav-menu"> <a href="home.html" aria-label="Go to Home">Home</a> </nav>
+</header>
+<main id="main" class="flex-grow container mx-auto p-6">
+    <div class="max-w-2xl mx-auto">
+      <h1 class="text-3xl font-bold text-gray-800 dark:text-gray-100 mb-2">Speech to Text</h1>
+      <p class="text-gray-600 dark:text-gray-300 mb-6">Take notes by speaking or typing. Save, listen, or delete your notes!</p>
+      <div class="no-browser-support bg-yellow-100 text-yellow-800 p-4 rounded-lg mb-6 hidden">
+        Sorry, your browser doesn't support the Web Speech API. Try using Google Chrome.
+      </div>
+      <div class="app bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+        <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-4">Add New Note</h2>
+        <div class="mb-4">
+          <textarea id="note-textarea" class="w-full p-3 border rounded-lg dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600" placeholder="Type or speak your note..." rows="6" aria-describedby="recording-instructions"></textarea>
+        </div>
+        <div class="flex space-x-4 mb-4">
+          <button id="start-record-btn" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 disabled:opacity-50" title="Start Recording" aria-label="Start voice recognition">Start</button>
+          <button id="pause-record-btn" class="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 disabled:opacity-50" title="Pause Recording" aria-label="Pause voice recognition" disabled>Pause</button>
+          <button id="save-note-btn" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 disabled:opacity-50" title="Save Note" aria-label="Save note">Save</button>
+        </div>
+        <p id="recording-instructions" class="text-gray-600 dark:text-gray-300">Press <strong>Start</strong> and allow microphone access to begin recording.</p>
+        <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mt-6 mb-4">My Notes</h2>
+        <ul id="notes" class="space-y-4" aria-live="polite">
+          <li class="no-notes text-gray-500 dark:text-gray-400">You don't have any notes yet.</li>
+        </ul>
+      </div>
+    </div>
+  </main>
+<footer>
+  <p>© 2025 Typing Coach AI</p>
+</footer>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      // Check Web Speech API support
+      window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!window.SpeechRecognition) {
+        $('.no-browser-support').removeClass('hidden');
+        $('#start-record-btn, #pause-record-btn').prop('disabled', true);
+      }
+
+      const recognition = window.SpeechRecognition ? new SpeechRecognition() : null;
+      if (recognition) {
+        recognition.continuous = true;
+        recognition.interimResults = true;
+      }
+      let isRecording = false;
+
+      // Load saved notes from localStorage
+      let notes = JSON.parse(localStorage.getItem('notes')) || [];
+      function renderNotes() {
+        $('#notes').empty();
+        if (notes.length === 0) {
+          $('#notes').append('<li class="no-notes text-gray-500 dark:text-gray-400">You don\'t have any notes yet.</li>');
+        } else {
+          notes.forEach((note, index) => {
+            const noteItem = $(`
+              <li class="card bg-gray-50 dark:bg-gray-700 p-4 rounded-lg shadow flex justify-between items-center">
+                <p class="flex-1">${note}</p>
+                <div class="note-actions flex space-x-2">
+                  <button class="listen-btn bg-blue-500 text-white p-2 rounded-lg" data-index="${index}" title="Listen to Note" aria-label="Listen to note">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707a1 1 0 011.414 0l4.707 4.707H20a1 1 0 011 1v4a1 1 0 01-1 1h-1.586l-4.707 4.707a1 1 0 01-1.414 0L5.586 15z" />
+                    </svg>
+                  </button>
+                  <button class="delete-btn bg-red-500 text-white p-2 rounded-lg" data-index="${index}" title="Delete Note" aria-label="Delete note">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                </div>
+              </li>
+            `);
+            $('#notes').append(noteItem);
+          });
+        }
+      }
+      renderNotes();
+
+      // Theme toggle
+      $('#theme-toggle').click(function () {
+        $('html').toggleClass('dark');
+        localStorage.setItem('theme', $('html').hasClass('dark') ? 'dark' : 'light');
+      });
+
+      // Load saved theme
+      if (localStorage.getItem('theme') === 'dark') {
+        $('html').addClass('dark');
+      }
+
+      // Start recording
+      $('#start-record-btn').click(function () {
+        if (recognition && !isRecording) {
+          recognition.start();
+          isRecording = true;
+          $(this).addClass('recording').text('Recording...');
+          $('#pause-record-btn').prop('disabled', false);
+          $('#recording-instructions').text('Recording... Speak clearly into your microphone.');
+        }
+      });
+
+      // Pause recording
+      $('#pause-record-btn').click(function () {
+        if (recognition && isRecording) {
+          recognition.stop();
+          isRecording = false;
+          $('#start-record-btn').removeClass('recording').text('Start');
+          $('#pause-record-btn').prop('disabled', true);
+          $('#recording-instructions').text('Recording paused. Press Start to continue.');
+        }
+      });
+
+      // Speech recognition results
+      if (recognition) {
+        recognition.onresult = function (event) {
+          let transcript = '';
+          for (let i = event.resultIndex; i < event.results.length; i++) {
+            transcript += event.results[i][0].transcript;
+          }
+          $('#note-textarea').val(transcript);
+        };
+
+
+        recognition.onerror = function (event) {
+          $('#recording-instructions').text('Error: ' + event.error + '. Please try again.');
+          recognition.stop();
+          isRecording = false;
+          $('#start-record-btn').removeClass('recording').text('Start');
+          $('#pause-record-btn').prop('disabled', true);
+        };
+      }
+
+      // Save note
+      $('#save-note-btn').click(function () {
+        const noteText = $('#note-textarea').val().trim();
+        if (noteText) {
+          notes.push(noteText);
+          localStorage.setItem('notes', JSON.stringify(notes));
+          renderNotes();
+          $('#note-textarea').val('');
+          $('#recording-instructions').text('Note saved! Create another note.');
+        } else {
+          $('#recording-instructions').text('Please enter or record a note before saving.');
+        }
+      });
+
+      // Listen to note
+      $('#notes').on('click', '.listen-btn', function () {
+        const index = $(this).data('index');
+        const utterance = new SpeechSynthesisUtterance(notes[index]);
+        utterance.lang = 'en-US';
+        window.speechSynthesis.speak(utterance);
+        $('#recording-instructions').text('Playing note...');
+        utterance.onend = () => {
+          $('#recording-instructions').text('Finished playing note.');
+        };
+      });
+
+      // Delete note
+      $('#notes').on('click', '.delete-btn', function () {
+        const index = $(this).data('index');
+        notes.splice(index, 1);
+        localStorage.setItem('notes', JSON.stringify(notes));
+        renderNotes();
+        $('#recording-instructions').text('Note deleted.');
+      });
+    });
+  </script>
+
+
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typing Coach AI - Typing Worksheet Generator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="Worksheet Generated/style-Typing-worksheet.css" rel="stylesheet">
+</head>
+<body>
+    <noscript>
+        <div style="text-align: center; padding: 1rem; background: #f472b6; color: #fff;">
+            JavaScript is disabled. Please enable it to use all features of Typing Coach AI.
+        </div>
+    </noscript>
+    <a href="#main" class="skip-link">Skip to Content</a>
+    <header>
+        <div class="logo">Typing Coach AI</div>
+        <nav id="nav-menu">
+            <a href="home.html" aria-label="Go to Home">Home</a>
+            
+        </nav>
+    </header>
+    <main class="container">
+        <h1>Typing Worksheet Generator</h1>
+        <div class="form-container">
+            <h2>Create Your Worksheet</h2>
+            <label for="title">Worksheet Title:</label>
+            <input type="text" id="title" placeholder="e.g., Typing Practice 1">
+
+            <label for="instructions">Instructions:</label>
+            <input type="text" id="instructions" placeholder="e.g., Type the following words in the answer boxes.">
+
+            <label for="words">Words or Phrases (comma-separated):</label>
+            <input type="text" id="words" placeholder="e.g., apple, banana, cherry">
+
+            <label for="numQuestions">Number of Questions:</label>
+            <input type="number" id="numQuestions" min="1" max="20" value="5">
+
+            <label for="difficulty">Difficulty Level:</label>
+            <select id="difficulty">
+                <option value="easy">Easy (Common Words)</option>
+                <option value="medium">Medium (Mixed Case)</option>
+                <option value="hard">Hard (Sentences)</option>
+            </select>
+
+            <div class="button-group">
+                <button onclick="generateWorksheet()">Generate Worksheet</button>
+                <button onclick="printWorksheet()">Print Worksheet</button>
+            </div>
+        </div>
+
+        <div class="worksheet" id="worksheet">
+            <!-- Worksheet will be generated here -->
+        </div>
+    </main>
+    <footer>
+        <p>© 2025 Typing Coach AI</p>
+    </footer>
+    <script src="Worksheet Generated/Typing worksheet.js"></script>
+</body>
+</html>

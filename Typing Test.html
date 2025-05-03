@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typing Test</title>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="Typing Test/style.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+			font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+            color: #1f2937;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+       
+    </style>
+</head>
+<body>
+    <noscript>
+        <div style="text-align: center; padding: 1rem; background: #f472b6; color: #fff;">
+            JavaScript is disabled. Please enable it to use all features of Typing Coach AI.
+        </div>
+    </noscript>
+    <a href="#main" class="skip-link">Skip to Content</a>
+    <header>
+        <div class="logo">Typing Coach AI</div>
+        <button class="hamburger" aria-label="Toggle navigation" onclick="toggleNav()">☰</button>
+        <nav id="nav-menu">
+            <a href="home.html" aria-label="Go to Home">Home</a>
+        </nav>
+    </header>
+
+    <main id="main">
+      <div class="wrapper">
+            <input type="text" class="input-field">
+            <div class="content-box">
+                <h1 style="color: #333;">Typing Speed Test</h1> 
+                <div class="content">
+                    <ul class="result-details">
+                        <li class="time">
+                            <p style="color: #333;">Time Left:</p> 
+                            <span><b>60</b>s</span>
+                        </li>
+                        <li class="mistake">
+                            <p style="color: #333;">Mistakes:</p>
+                            <span>0</span>
+                        </li>
+                        <li class="wpm">
+                            <p style="color: #333;">WPM:</p>
+                            <span>0</span>
+                        </li>
+                        <li class="cpm">
+                            <p style="color: #333;">CPM:</p> 
+                            <span>0</span>
+                        </li>
+                    </ul>
+                    <button style="background: #4CAF50;">Try Again</button>
+                </div>
+                <div class="typing-text">
+                    <p></p>
+                </div>
+            </div>
+        </div>     
+        
+    </main>
+
+    <footer>
+        
+        <p>© 2025 Typing Coach AI</p>
+    </footer>
+  <!-- Javascript -->
+        <script src="Typing Test/js/paragraphs.js"></script>
+        <script src="Typing Test/js/script.js"></script>
+ 
+</body>
+</html>

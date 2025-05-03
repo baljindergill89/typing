@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+   <title>Typing Certificate</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+	<link href="Typing Certificate/style-typing-certifificate.css" rel="stylesheet">
+  
+</head>
+<body class="flex flex-col min-h-screen relative">
+    <noscript>
+        <div style="text-align: center; padding: 1rem; background: #f472b6; color: #fff;">
+            JavaScript is disabled. Please enable it to use all features of Typing Coach AI.
+        </div>
+    </noscript>
+     <a href="#main" class="skip-link">Skip to Content</a>
+    <header>
+        <div class="logo"> Typing Coach AI</div>
+         <nav id="nav-menu">
+            <a href="home.html" aria-label="Go to Home">Home</a>
+        </nav>
+    </header>
+    <main id="main">
+     <div class="flex flex-1 items-center justify-center p-4">
+        <div class="certificate-container fade-in" role="document" aria-label="Typing Performance Certificate">
+            <h1 class="certificate-title text-5xl font-bold text-center mb-8">Certificate of Typing Excellence</h1>
+            <div class="text-center mb-6">
+                <p class="certificate-text text-lg font-semibold">Proudly Awarded to</p>
+                <input id="userName" type="text" placeholder="Enter your name" aria-label="Recipient name" autofocus oninput="console.log('Name typed:', this.value)" required>
+            </div>
+            <div class="mb-6 text-center">
+                <p class="certificate-text text-lg">For demonstrating outstanding typing proficiency</p>
+                <p class="certificate-text">Words Per Minute: <span id="wpm" class="font-bold text-blue-600">0</span></p>
+                <p class="certificate-text">Accuracy: <span id="accuracy" class="font-bold text-green-600">0</span>%</p>
+                <p class="certificate-text">Date: <span id="date" class="font-bold"></span></p>
+            </div>
+            <div class="text-center mb-6">
+                <p class="certificate-text text-lg italic text-gray-600">Your exceptional skills are hereby recognized!</p>
+            </div>
+            <div class="flex justify-center space-x-4 no-print">
+                <button id="takeTestButton" class="button bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600" aria-label="Open typing test">Take Typing Test</button>
+                <button id="printButton" class="button bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600" aria-label="Print certificate">Print Certificate</button>
+            </div>
+        </div>
+        <div id="sidebar" class="sidebar fixed right-0 top-0 h-full  shadow-2xl p-6 no-print sidebar-hidden">
+            <button id="closeSidebar" class="absolute top-4 right-4 text-gray-600 hover:text-gray-800" aria-label="Close sidebar">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <div class="mb-6">
+                <h2 class="text-2xl font-bold">Typing Test</h2>
+                <p class="text-sm text-gray-600">Type the text below as fast and accurately as you can.</p>
+            </div>
+            <div id="typingTest" class="">
+                <p id="sampleText" class="border p-4 bg-gray-50 rounded-lg mb-4"></p>
+                <div class="mb-4">
+                    <div class="h-2 bg-gray-200 rounded-full">
+                        <div id="progressBar" class="h-2 progress-bar rounded-full" style="width: 0%"></div>
+                    </div>
+                    <p class="text-sm text-gray-600 mt-1">Time Elapsed: <span id="timer">0</span>s</p>
+                </div>
+                <textarea id="userInput" class="border p-4 w-full h-32 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="Start typing here..." aria-label="Typing input"></textarea>
+                <p class="text-sm text-gray-600 mt-2">Live WPM: <span id="liveWPM">0</span> | Live Accuracy: <span id="liveAccuracy">0</span>%</p>
+                <div class="flex justify-center mt-4">
+                    <button id="submitTestButton" class="button bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600" aria-label="Submit test">Submit</button>
+                </div>
+            </div>
+            <div id="results" class="hidden mt-6">
+                <h3 class="text-xl font-bold mb-4">Test Results</h3>
+                <p>WPM: <span id="resultWPM"></span></p>
+                <p>Accuracy: <span id="resultAccuracy"></span>%</p>
+                <p class="mt-4 text-gray-600">Great job! Your certificate is updated.</p>
+            </div>
+        </div>
+    </div>
+    </main>
+    <footer>
+        <p>© 2025 Typing Coach AI</p>
+    </footer>
+   <script src="Typing Certificate/t-certificate.js"></script>
+</body>
+</html>

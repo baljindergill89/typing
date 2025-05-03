@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Typing Game</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="Typing Games/style-typing-games.css" rel="stylesheet">	
+</head>
+  <body>
+<noscript>
+<div style="text-align: center; padding: 1rem; background: #f472b6; color: #fff;"> JavaScript is disabled. Please enable it to use all features of Typing Coach AI. </div>
+</noscript>
+<a href="#main" class="skip-link">Skip to Content</a>
+<header>
+  <div class="logo"> Typing Coach AI</div>
+  <nav id="nav-menu"> <a href="home.html" aria-label="Go to Home">Home</a> </nav>
+</header>
+<main id="main">
+  <div class="container">
+    <h1>🕹️ Typing Game</h1>
+    <div class="game-container" id="gameContainer" role="region" aria-label="Game area"></div>
+    <input
+                type="text"
+                id="wordInput"
+                placeholder="Type words here..."
+                autofocus
+                aria-label="Type the falling words"
+            />
+    <div class="stats">
+      <p>✅ Score: <span id="score" aria-live="polite">0</span></p>
+      <p>❌ Missed: <span id="missed" aria-live="polite">0</span> / 5</p>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-bar-fill" id="progressBar" style="width: 0%"></div>
+    </div>
+    <div class="button-group">
+      <button id="startButton" aria-label="Start or restart game">▶️ Start Game</button>
+      <button id="pauseButton" aria-label="Pause game" disabled>⏸️ Pause</button>
+    </div>
+    <div class="modal" id="gameOverModal">
+      <div class="modal-content">
+        <h2>Game Over!</h2>
+        <p>Your final score: <span id="finalScore">0</span></p>
+        <button onclick="closeModal()">Play Again</button>
+      </div>
+    </div>
+  </div>
+</main>
+<footer>
+  <p>© 2025 Typing Coach AI</p>
+</footer>
+<script src="Typing Games/typing-game.js"></script>
+</body>
+</html>
